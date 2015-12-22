@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table  style='width: 70%;align: center;'>
+		<tr>
+			<td align="right">Upload File</td>
+			<td><input type="file" name="image" id="image"/></td>
+			<td><input type="button" name="submit" value="Upload" onclick="javascript:upload(); return false;"> </td>		
+		</tr>
+	</table>
+
+	<script type="text/javascript" src="fetch.js" > </script>
+
+	<script type="text/javascript">
+	
+	function upload() {
+		var image = document.getElementById('image');
+		var data = new FormData();
+		data.append('file', image.files[0]);
+		data.append('user', 'RT');
+	
+		fetch('http://branch.mybluemix.net/Upload', {
+		  method: 'post',
+		  body: data
+		})
+	}
+	</script>
+</body>
+</html>

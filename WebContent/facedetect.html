@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HTML5 Face Detection</title>
+
+
+<script type="text/javascript" src="js/ccv.js"></script>
+<script type="text/javascript" src="js/face.js"></script>
+<script type="text/javascript" src="js/faceDetect.js"></script>
+<script type="text/javascript" src="js/stackblur.js"></script>
+</head>
+<body>
+<div class="wrapper">
+	<!-- Our Main Video Element 
+	<video height="426" width="640" controls >
+		<source src="video/tcs_ceo_tcoc.mp4" type="video/mp4">
+	</video>
+	-->
+	<video autoplay id="vid"  width="200" height="200"></video>
+	<a href="#" onclick="App.start('glasses');">Glasses!</a>
+	<!-- Out Canvas Element for output -->
+	<canvas id="output"  height="426" width="515" ></canvas>
+	<canvas id="output2"  height="426" width="515" ></canvas>
+
+	<div class="colours" style="display:none;">
+		<div id="red">
+			<input type="range" min=0 max=255 value=190 class="min">
+			<input type="range" min=0 max=255 value=240 class="max">
+		</div>
+		<div id="green">
+			<input type="range" min=0 max=255 value=0 class="min">
+			<input type="range" min=0 max=255 value=120 class="max">
+		</div>
+		<div id="blue">
+			<input type="range" min=0 max=255 value=90 class="min">
+			<input type="range" min=0 max=255 value=190 class="max">
+		</div>				
+	</div>
+
+</div>
+
+
+</body>
+<script type="text/javascript">
+var video = document.querySelector("#vid");
+//var localMediaStream = null;
+var onCameraFail = function (e) {       
+	alert('No Camera');
+	};
+	
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+window.URL = window.URL || window.webkitURL;
+navigator.getUserMedia({video:true}, function (stream) {
+    video.src = window.URL.createObjectURL(stream);
+   // localMediaStream = stream;
+}, onCameraFail);
+
+
+
+</script>
+</html>
